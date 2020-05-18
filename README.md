@@ -39,7 +39,7 @@ Azure Cosmos DB is a globally distributed multi-model database. One of the suppo
     ```
     If ssl_keystore_file_path is not given in config.properties, then by default <JAVA_HOME>/jre/lib/security/cacerts will be used
     If ssl_keystore_password is not given in config.properties, then the default password 'changeit' will be used.
-    Note that you will need to add the default region (e.g. `West US`) as the v.4x only allows one local DC to be paired with the contact point. If you want to add a region other than the default (which is the region that was given when the Cosmos DB account was first created), you will need to use regional suffix when adding contact point, e.g. `host-westus.cassandra.cosmos.azure.com`.
+    Note that you will need to add the default region (e.g. `region=West US`) as the v.4x driver only allows one local DC to be paired with the contact point. If you want to add a region other than the default (which is the region that was given when the Cosmos DB account was first created), you will need to use regional suffix when adding contact point, e.g. `host-westus.cassandra.cosmos.azure.com`.
 
 5. Run `mvn clean install` from cosmosdb folder to build the project. This will generate cosmosdb-cassandra-examples.jar under target folder.
  
