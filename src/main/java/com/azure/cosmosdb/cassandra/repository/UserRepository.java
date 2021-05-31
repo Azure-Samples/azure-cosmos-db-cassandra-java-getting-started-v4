@@ -6,6 +6,7 @@ import com.datastax.oss.driver.api.core.cql.BoundStatement;
 import com.datastax.oss.driver.api.core.cql.PreparedStatement;
 import com.datastax.oss.driver.api.core.cql.Row;
 import com.datastax.oss.driver.api.core.CqlSession;
+import com.datastax.oss.driver.api.core.cql.SimpleStatement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -72,8 +73,8 @@ public class UserRepository {
      * @param id user_id
      */
     public void selectUser(int id) {
-        final String query = "SELECT * FROM "+keyspace+"."+table+" where user_id = 3";
-        Row row = session.execute(query).one();
+        final String query = String.format("SELECT * FROM %s.%s where user_id = ?", keyspace, table);
+        Row row = session.execute(SimpleStatement.builder(query).addPositionalValues(id).build()).one();
 
         LOGGER.info("Obtained row: {} | {} | {} ", row.getInt("user_id"), row.getString("user_name"), row.getString("user_bcity"));
     }
